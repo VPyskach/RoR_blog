@@ -1,4 +1,3 @@
-
 <div class="center-container text-center">
 <h1><%= @post.title %></h1>
 <p>
@@ -8,21 +7,21 @@
 </p>
 <p><%= @post.body %></p>
 
-</div>
-
 <%= form_for :postcomment ,url: post_postcomments_path(@post.id), method: :post do |f| %>
 	<p><%= f.label "Add your comment" %></p>
 	<p><%= f.text_area :comment, cols: 5,rows: 5 %></p>
 	<%= f.submit "Add Comment" %>
 <% end %>	
 
+</div>
+
+
 <% @comment.each do |comment| %>
+	<%= link_to "Edit", edit_post_postcomment_path(comment.id) %>
+ 		<%= link_to "Delete", post_postcomment_path(comment.id), data: {confim: 'Are you sure?'}, method: :delete %>
+ 	<% end %>
 <hr>
 <p>User <b><%= comment.user.nickname %></b> say: </p>
 <p><%= comment.comment %></p>
-<% if current_user != nil and current_user.id == comment.user_id %>
-		<%= link_to "Edit", edit_post_postcomment_path(comment.id) %>
-		<%= link_to "Delete", post_postcomment_path(comment.id), data: {confim: 'Are you sure?'}, method: :delete %>
-	<% end %>
 <hr>
 <% end %>

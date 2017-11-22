@@ -12,5 +12,4 @@ ActiveAdmin.register User do
 #   permitted
 # end
 permit_params :nickname
-
 end
