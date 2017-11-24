@@ -43,6 +43,14 @@ gem 'devise'
 
 gem 'bootstrap-sass', '~>3.3.6'
 gem 'jquery-rails'
+#for user avatar
+gem "paperclip", "~> 5.0.0"
+#footo
+gem 'carrierwave', '~> 1.0'
+#validation
+gem 'client_side_validations'
+#redaktor
+gem 'tinymce-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

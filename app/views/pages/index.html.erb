@@ -1,27 +1,26 @@
-<div class="conteiner-fluid">
-	
+
+			<div class="right-conteiner">
+		<%= link_to "Create New Post", new_post_path , class: "btn btn-default"%>
+</div>
+
+<div class="center-container">
 <% @posts.each do |post| %>
+	<div class="col-md-4 post text-center">
 	
-	<div class="center-container">
- 	<div class="col-md-4">
 	<h1><%= link_to post.title , post_path(post.id)%></h1>
 	<p>
+		<%= image_tag post.user.avatar.url, width: 30, height: 30 %>
 		Autor:<%= post.user.nickname %> <br>
- 		<p><%= post.body %></p>
- 		Creeated at:<%= post.created_at %> <br>
- 		Update at:<%= post.updated_at %> <br>
+		<p><%= sanitize(post.body) %></p>
+		Creeated at:<%= post.created_at %> <br>
+		Update at:<%= post.updated_at %> <br>
 	</p>
-	<p><%= post.body %></p>
+	
 	<% if current_user != nil and current_user.id == post.user_id %>
 		<%= link_to "Edit", edit_post_path(post.id) %>
 		<%= link_to "Delete", post_path(post.id), data: {confim: 'Are you sure?'}, method: :delete %>
 	<% end %>
+	</div>
+<% end %>
 </div>
- </div>
- <% end %>
- 
- 	<div class="right-conteiner">
- 		<%= link_to "Create New Post", new_post_path , class: "btn btn-default"%>
- 	</div>
- 	
- </div> 
+	
