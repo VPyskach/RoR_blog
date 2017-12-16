@@ -12,13 +12,16 @@ class PhotosController < ApplicationController
 	def create
 		params[:photo][:category_id]=params[:category_id]
 		params[:photo][:user_id]=current_user.id
-		pp @photo=Photo.create(photo_params)
+		@photo=Photo.create(photo_params)
 		redirect_to photos_path
 	end
 
 	def update
-		@photo.update(photo_params)
-  		redirect_to photos_path
+		if @photo.update(photo_params)
+      		redirect_to photos_path
+    	else
+      		render 'edit'
+    	end
 	end
 
 	def destroy
